@@ -1,0 +1,148 @@
+html {
+	font-size: 62.5%;
+}
+
+/* mobile first css */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.6rem;
+    background-color: #192f5e;
+}
+
+.flex-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Step one: style the default/generic/mobile veiw - style the links to set their look while visible */
+
+header {
+	background-color: #fff;
+	padding: 2%;
+}
+
+header a {
+    color: #3f3f3f;
+    text-decoration: none;
+    display: block; /* this allows the clickable area 'a tag' take up the full space of the li/of its parent container or you need to use padding and margins to space your li's */
+}
+
+.menu a:hover,
+.menu a:active {
+    background-color: gainsboro;
+    border-radius: 4px;
+}
+
+.toggle-btn {
+    border: none;
+    background-color: #fff;
+    outline: none; /* focus set on the outline: provides visual feedback for keyboard navigation like screenreaders */
+}
+
+.toggle-btn:hover {
+    cursor: pointer; /* to help people understand that this is a piece of navigation */
+}
+
+svg rect {
+    fill: #3f3f3f; /* we use 'fill' to change the colour of an svg */
+}
+
+.menu li {
+    line-height: 4rem; /* the lineheight lets the content set the hegiht of the container */
+    text-align: center;
+    }
+
+/* Style to overlap the content below "main-content" Going to style it absolutely. This container does not have a relatively positioned parent. This container will be positioned absolutely to the body in mobile view. */
+
+header nav {
+    position: absolute;
+    top: 5rem;
+    left: 0;
+    /* once absolute, it will nto inherit its bg colour from its old parent so need to re-add it. Put bg colour back */
+    background-color: #ffffff;
+    width: 100vw; /*(100% of the viewport width)*/
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.7s ease-in-out;
+}
+
+ul.menu {
+    padding-bottom: 1rem;
+}
+
+/* show--nav is the extra class that we call from the javascript and is toggled by the method classList */
+.show-nav {
+    max-height: 30rem;
+}
+
+/* ************************* section ****************** */
+section {
+    padding: 3.125rem;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+section p {
+    color: #d5e294;
+    border-bottom: 2px solid #d5e294;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    font-size: 1.777rem;
+}
+
+section h2,
+footer {
+    color: #fff;
+    font-size: 3.157rem;
+    margin-bottom: 2rem;
+}
+
+/*--- Footer --- */
+footer {
+	text-align: center;
+	position: -webkit-sticky;
+	position: sticky;
+}
+
+.gallery {
+    
+} 
+
+@media only screen and (min-width: 520px) {
+
+    /* hide the toggle button in the tablet and desktop views - there is enough room on the screen to see thee navigation now */
+        .toggle-btn {
+            display: none;
+        }
+
+        /* max-height indicates it can be less than 30rem but never larger */
+        header nav {
+            max-height: 30rem;
+            position: static; /* reset from absolute back to the default positoning: static */
+            max-width: 60%; /* change the width... it was previously set to 100vw for mobile first build */
+            overflow: visible; /* reset from hidden */
+        }
+
+        .menu,
+        header {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        ul.menu li {
+            flex-grow: 1; /* specifies how much an item will grow relative to the rest of the items inside the same container. */
+            flex-shrink: 0; /* will turn off flex shrink. Need flex shrink and flex grow to use flex basis */
+            flex-basis: auto; /* specifies the intial length of a flexible item. When used with all three, it balances everything out */
+        }
+
+}
+
+@media only screen and (min-width: 1300px) {
+
+    /* constrains the viewport on larger screens by center aligning the content where users like to see it in the middle of the screen */
+        header {
+            width: 1300px;
+            margin: 0 auto;
+        }
+    }
